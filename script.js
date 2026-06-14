@@ -174,9 +174,15 @@ class Sistema {
         renderizarTablaArticulos();
     }
 
-    eliminarVenta(nro) {
-        this.ventas = this.ventas.filter(vent => vent.codigo != nro);
-        console.log(this.ventas);
+    eliminarVenta(codigo) {
+        this.ventas = this.ventas.filter(venta => venta.codigo != codigo);
+
+        for(let influencer of this.influencers){
+            influencer.ventas = influencer.ventas.filter(venta => venta.codigo != codigo);
+        }
+
+        renderizarTablaVentas();
+        renderizarTablaArticulos();
         renderizarTablaInfluencers();
     }
 
