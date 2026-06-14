@@ -1,0 +1,138 @@
+<!-- AGUSTÍN MÉNDEZ - 351999 -->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./css/estilos.css">
+        <script src="./script.js"></script>
+        <title>Obligatorio 1</title>
+    </head>
+    <body>
+        <h1>Sistema de Gestión (Méndez)</h1>
+        <section>
+            <h2>Manejo de influencers</h2>
+            <article>
+            <h3>Alta de influencer</h3>
+            <button id="agregarInfluencerBtn">Agregar influencer</button>
+            </article>
+            <dialog id="agregarInfluencer">
+                <h3>Datos del influencer a agregar</h3>
+                <h4>Influencer</h4>
+                <form id="influencerForm">
+                    <label class="inputLabel" for="name">Nombre</label>
+                    <input type="text" id="name" name="name" required>
+                    <label class="inputLabel" for="email">Mail</label>
+                    <input type="email" id="email" name="mail" required>
+                    <label class="inputLabel" for="comision">% Comisión</label>
+                    <input type="number" id="comision" name="comision" required>
+                    <input type="button" value="Cancelar" id="cerrarInfluencerBtn">
+                    <input type="submit" value="Agregar" id="confirmarInfluencerBtn">
+                </form>
+            </dialog>
+            <article>
+                <h3>Tabla de influencers</h3>
+                <table id="tablaInfluencers">
+                    <tr>
+                        <th><button class="nombre" id="ordenarInfluencersBtn">Nombre ⇅</button></th>
+                        <th>Email</th>
+                        <th>% Comisión</th>
+                        <th>Total a cobrar</th>
+                        <th>Etiquetas</th>
+                        <th>Detalle</th>
+                    </tr>
+                </table>
+                <p>Información: 🔥Top comisión (cobra más $) 🧊Cero ventas 🟢Venta más cara (mayor monto en una sola venta)</p>
+            </article>
+        </section>
+        <section>
+            <h2>Manejo de Artículos</h2>
+            <article>
+                <h3>Alta de Artículo</h3>
+                <button id="agregarArticuloBtn">Agregar artículo</button>
+            </article>
+            <dialog id="agregarArticulo">
+                <h3>Datos del artículo a agregar</h3>
+                <h4>Artículo</h4>
+                <form id="articuloForm">
+                    <label class="inputLabel" for="codigo">Código</label>
+                    <input type="text" id="codigo" name="codigo" required>
+                    <label class="inputLabel" for="desc">Descripción</label>
+                    <input type="text" id="desc" name="descripcion" required>
+                    <label class="inputLabel" for="precio">Precio</label>
+                    <input type="number" id="precio" name="precio" required>
+                    <input type="button" value="Cancelar" id="cerrarArticuloBtn">
+                    <input type="submit" value="Agregar" id="confirmarArticuloBtn">
+                </form>
+            </dialog>
+            <article>
+                <h3>Tabla de artículos</h3>
+                <table id="tablaArticulos">
+                    <tr>
+                        <th><button id="ordenarArticulosBtn">Código ⇅</button></th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                    </tr>
+                </table>
+                <p>Información: ⭐Artículo más vendido (mayor cantidad de unidades vendidas)</p>
+            </article>
+        </section>
+        <section>
+            <h2>Ventas</h2>
+            <article>
+                <h3>Alta de ventas</h3>
+                <button id="agregarVentaBtn">Agregar venta</button>
+            </article>
+            <dialog id="agregarVenta">
+                <h3>Datos de la venta a agregar</h3>
+                <h4>Venta</h4>
+                <form id="ventaForm">
+                    <label class="inputLabel">Nro: </label>
+                    <label class="inputLabel" for="articulo">Artículo</label>
+                    <select id="articulo" name="articulo">
+                        
+                    </select>
+                    <label class="inputLabel" for="influencer">Influencer</label>
+                    <select id="influencer" name="influencer">
+    
+                    </select>
+                    <label class="inputLabel" for="cantidad">Cantidad</label>
+                    <input type="number" id="cantidad" name="cantidad" required>
+                    <label class="inputLabel" for="medio">Medio</label>
+                    <select name="medio" id="medio">
+                        <option value="instagram">1 - Instagram</option>
+                        <option value="youtube">2 - YouTube</option>
+                        <option value="x">3 - X</option>
+                        <option value="tiktok">4 - TikTok</option>
+                        <option value="facebook">5 - Facebook</option>
+                        <option value="otras">6 - Otras</option>
+                    </select>
+                    <input type="button" value="Cancelar" id="cerrarVentaBtn">
+                    <input type="submit" value="Agregar" id="confirmarVentaBtn">
+                </form>
+            </dialog>
+            <article>
+                <h3>Tabla de ventas (ordenada por número de venta)</h3>
+                <table id="tablaVentas">
+                    <tr>
+                        <th>Nro Venta</th>
+                        <th>Código de Artículo</th>
+                        <th>Nombre de Influencer</th>
+                        <th>Cantidad</th>
+                        <th>Medio</th>
+                        <th>Acción</th>
+                    </tr>
+                </table>
+            </article>
+            <article>
+                <h3>Gráfico de Burbujas</h3>
+            </article>
+        </section>
+        
+        <footer>
+            <p>Sitio para el obligatorio de programación 1 desarrollado por <a href="https://www.linkedin.com/in/agustín-méndez-17a4a83bb/" target="_blank">Agustín Méndez - 351999</a></p>
+        </footer>
+    </body>
+
+</html>

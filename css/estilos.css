@@ -1,0 +1,72 @@
+/* AGUSTÍN MÉNDEZ - 351999*/
+
+* {
+    font-family: sans-serif;
+}
+
+body {
+    background-color: #808080;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+section {
+    background-color: white;
+    border-radius: 5px;
+    max-width: 90%;
+
+    padding: 1em 4em 0 4em;
+}
+
+article {
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+button, input[type="button"], input[type="submit"] {
+    padding: 1em;
+    border-radius: 10px;
+    border: 1px solid #10a5b0;
+    background-color: #10a5b0;
+    color: white;
+
+    min-width: 12em;
+}
+
+.action {
+    min-width: 5em;
+}
+
+.ventasBtn {
+    min-width: 7em;
+}
+
+.nombre {
+    min-width: 9em;
+}
+
+.inputLabel {
+    display: inline-block;
+    width: 100px;
+}
+
+button:hover, input[type="button"]:hover, input[type="submit"]:hover{
+    cursor: pointer;
+}
+
+button:active, input[type="button"]:active, input[type="submit"]:active {
+    background-color: #0d838b;
+}
+
+table, td, th {
+    border: 1px solid black;
+    padding: 0.25em;
+}
+
+table {
+    border-collapse: collapse;
+}
