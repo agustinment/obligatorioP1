@@ -61,6 +61,7 @@ class Sistema {
         let influencerObj = this.influencers.find(inf => inf.nombre == influencer)
         influencerObj.ventas.push(nuevaVenta);
         this.reenumerarVentas();
+        actualizarNroVenta();
         return nuevaVenta;
     }
 
@@ -187,6 +188,7 @@ class Sistema {
         }
 
         this.reenumerarVentas();
+        actualizarNroVenta();
 
         renderizarTablaVentas();
         renderizarTablaArticulos();
@@ -296,6 +298,7 @@ function inicio(){
     let ventaForm = document.getElementById("ventaForm");
     ventaForm.addEventListener("submit", event => event.preventDefault());
 
+    actualizarNroVenta();
 
     let agregarVentaBtn = document.getElementById("agregarVentaBtn");
     let cerrarVentaBtn = document.getElementById("cerrarVentaBtn");
@@ -341,6 +344,10 @@ function actualizarSelect(id){
     }
 }
 
+function actualizarNroVenta() {
+    let nroVenta = document.getElementById("nroVenta");
+    nroVenta.innerHTML = sistema.ventas.length + 1;
+}
 
 // ==========
 // = TABLAS =
