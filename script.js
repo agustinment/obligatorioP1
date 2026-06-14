@@ -56,12 +56,11 @@ class Sistema {
 
 
     agregarVenta(articulo, influencer, cantidad, medio){
-        let codigo = this.ventas.length + 1;
         let nuevaVenta = new Venta(articulo, influencer, cantidad, medio);
-        nuevaVenta.codigo = codigo;
         this.ventas.push(nuevaVenta);
         let influencerObj = this.influencers.find(inf => inf.nombre == influencer)
         influencerObj.ventas.push(nuevaVenta);
+        this.reenumerarVentas();
         return nuevaVenta;
     }
 
@@ -174,12 +173,20 @@ class Sistema {
         renderizarTablaArticulos();
     }
 
+    reenumerarVentas(){
+        for(let i = 0; i < this.ventas.length; i++){
+            this.ventas[i].codigo = i+1;
+        }
+    }
+
     eliminarVenta(codigo) {
         this.ventas = this.ventas.filter(venta => venta.codigo != codigo);
 
         for(let influencer of this.influencers){
             influencer.ventas = influencer.ventas.filter(venta => venta.codigo != codigo);
         }
+
+        this.reenumerarVentas();
 
         renderizarTablaVentas();
         renderizarTablaArticulos();
@@ -350,11 +357,12 @@ function renderizarTablaVentas(){
                         <th>Medio</th>
                         <th>Acción</th>
                     </tr>`
-    for(let venta of sistema.ventas){
+    for(let i = 0; i < sistema.ventas.length; i++){
+        let venta = sistema.ventas[i];
         let tr = document.createElement("tr");
 
         let tdCodigo = document.createElement("td");
-        tdCodigo.innerHTML = venta.codigo;
+        tdCodigo.innerHTML = i + 1;
 
         let tdArticulo = document.createElement("td");
         tdArticulo.innerHTML = venta.articulo;
