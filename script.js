@@ -54,6 +54,7 @@ class Sistema {
         }
         if(codigo.value != "" && desc.value != "" && precio.value != ""){
             this.agregarArticulo(codigo.value, desc.value, precio.value);
+            this.ordenarArticulos();
             renderizarTablaArticulos();
             codigo.value = "";
             desc.value = "";
@@ -175,9 +176,6 @@ class Sistema {
         } else {
             this.articulos.sort((a, b) => b.codigo.localeCompare(a.codigo));
         }
-
-        articuloOrdenadoAsc = !articuloOrdenadoAsc;
-        renderizarTablaArticulos();
     }
 
     reenumerarVentas(){
@@ -286,7 +284,7 @@ class Venta {
 // ================
 let sistema = new Sistema();
 let influencerOrdenadoAsc = true;
-let articuloOrdenadoAsc = false;
+let articuloOrdenadoAsc = true;
 
 function inicio(){
     
@@ -521,6 +519,10 @@ function renderizarTablaArticulos(){
     }
 
     let botonOrden = document.getElementById("ordenarArticulosBtn");
-    botonOrden.addEventListener("click", () => sistema.ordenarArticulos());
+    botonOrden.addEventListener("click", () =>{
+        articuloOrdenadoAsc = !articuloOrdenadoAsc;
+        sistema.ordenarArticulos();
+        renderizarTablaArticulos();
+    });
 
 }
