@@ -48,6 +48,10 @@ class Sistema {
         let codigo = document.getElementById("codigo");
         let desc = document.getElementById("desc");
         let precio = document.getElementById("precio");
+        if(!this.codigoUnico(codigo.value)){
+            alert("El código debe ser único");
+            codigo.value = "";
+        }
         if(codigo.value != "" && desc.value != "" && precio.value != ""){
             this.agregarArticulo(codigo.value, desc.value, precio.value);
             renderizarTablaArticulos();
@@ -205,6 +209,16 @@ class Sistema {
         let esUnico = true;
         for(let influencer of this.influencers){
             if(influencer.mail == mail){
+                esUnico = false;
+            }
+        }
+        return esUnico;
+    }
+
+    codigoUnico(codigo) {
+        let esUnico = true;
+        for(let articulo of this.articulos){
+            if(articulo.codigo == codigo){
                 esUnico = false;
             }
         }
