@@ -28,6 +28,7 @@ class Sistema {
         }
         if(nombre.value != "" && email.value != "" && comision.value != ""){
             this.agregarInfluencer(nombre.value, email.value, comision.value);
+            this.ordenarInfluencers();
             renderizarTablaInfluencers();
             nombre.value = "";
             email.value = "";
@@ -162,9 +163,6 @@ class Sistema {
         } else {
             this.influencers.sort((a, b) => b.nombre.localeCompare(a.nombre));
         }
-
-        influencerOrdenadoAsc = !influencerOrdenadoAsc;
-        renderizarTablaInfluencers();
     }
 
     ordenarArticulos() {
@@ -273,7 +271,7 @@ class Venta {
 // =  GLOBAL VAR  =
 // ================
 let sistema = new Sistema();
-let influencerOrdenadoAsc = false;
+let influencerOrdenadoAsc = true;
 let articuloOrdenadoAsc = false;
 
 function inicio(){
@@ -468,7 +466,11 @@ function renderizarTablaInfluencers() {
     }
 
     let botonOrden = document.getElementById("ordenarInfluencersBtn");
-    botonOrden.addEventListener("click", () => sistema.ordenarInfluencers());
+    botonOrden.addEventListener("click", () => {
+        influencerOrdenadoAsc = !influencerOrdenadoAsc;
+        sistema.ordenarInfluencers();
+        renderizarTablaInfluencers();
+    });
 
 }
 
