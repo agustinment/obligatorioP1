@@ -22,6 +22,10 @@ class Sistema {
         let nombre = document.getElementById("name");
         let email = document.getElementById("email");
         let comision = document.getElementById("comision");
+        if(!this.mailUnico(email.value)){
+            alert("Ese mail ya está en uso");
+            email.value = "";
+        }
         if(nombre.value != "" && email.value != "" && comision.value != ""){
             this.agregarInfluencer(nombre.value, email.value, comision.value);
             renderizarTablaInfluencers();
@@ -195,6 +199,19 @@ class Sistema {
         renderizarTablaInfluencers();
     }
 
+    // ==============
+    // = VALIDACIÓN =
+    // ==============
+
+    mailUnico(mail) {
+        let esUnico = true;
+        for(let influencer of this.influencers){
+            if(influencer.mail == mail){
+                esUnico = false;
+            }
+        }
+        return esUnico;
+    }
 }
 
 class Influencer {
