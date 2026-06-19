@@ -329,7 +329,13 @@ function inicio(){
 
     let agregarVentaBtn = document.getElementById("agregarVentaBtn");
     let cerrarVentaBtn = document.getElementById("cerrarVentaBtn");
-    agregarVentaBtn.addEventListener("click", () => mostrarDialog("agregarVenta"));
+    agregarVentaBtn.addEventListener("click", () =>{
+        if(sistema.influencers.length < 1 || sistema.articulos.length < 1){
+            alert("No se puede agregar ventas sin influencers o artículos.");
+            return;
+        }
+        mostrarDialog("agregarVenta");
+    });
     cerrarVentaBtn.addEventListener("click", () => cerrarDialog("agregarVenta"));
     
     let confirmarVentaBtn = document.getElementById("confirmarVentaBtn");
