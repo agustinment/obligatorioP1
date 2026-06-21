@@ -85,6 +85,7 @@ class Sistema {
             renderizarTablaVentas();
             renderizarTablaInfluencers();
             renderizarTablaArticulos();
+            renderizarGrafico()
             cantidad.value = "";
         }
     }
@@ -197,6 +198,20 @@ class Sistema {
         renderizarTablaVentas();
         renderizarTablaArticulos();
         renderizarTablaInfluencers();
+        renderizarGrafico();
+    }
+
+    actualizarBurbuja(id, valor){
+        let burbuja = document.getElementById(id);
+        burbuja.innerHTML = valor;
+        let diametro = 0;
+        if(valor == 0){
+            diametro = 10;
+        } else {
+            diametro = Math.sqrt(valor) * 1.5;
+        }
+        burbuja.style.width = diametro + "px";
+        burbuja.style.height = diametro + "px";
     }
 
     // ==============
@@ -531,4 +546,44 @@ function renderizarTablaArticulos(){
         renderizarTablaArticulos();
     });
 
+}
+
+function renderizarGrafico(){
+    let instagram = 0;
+    let youtube = 0;
+    let x = 0;
+    let tiktok = 0;
+    let facebook = 0;
+    let otras = 0;
+    
+    for(let venta of sistema.ventas){
+        let articulo = sistema.articulos.find(art => art.codigo == venta.articulo);
+        switch (venta.medio){
+            case "instagram":
+                instagram += (parseInt(venta.cantidad) * parseInt(articulo.precio));
+                break;
+            case "youtube":
+                youtube += (parseInt(venta.cantidad) * parseInt(articulo.precio));
+                break;
+            case "x":
+                x += (parseInt(venta.cantidad) * parseInt(articulo.precio));
+                break;
+            case "tiktok":
+                tiktok += (parseInt(venta.cantidad) * parseInt(articulo.precio));
+                break;
+            case "facebook":
+                facebook += (parseInt(venta.cantidad) * parseInt(articulo.precio));
+                break;
+            case "otras":
+                otras += (parseInt(venta.cantidad) * parseInt(articulo.precio));
+                break;
+        }
+    }
+
+    sistema.actualizarBurbuja("burbujaInstagram", instagram);
+    sistema.actualizarBurbuja("burbujaYouTube", youtube);
+    sistema.actualizarBurbuja("burbujaX", x);
+    sistema.actualizarBurbuja("burbujaTikTok", tiktok);
+    sistema.actualizarBurbuja("burbujaFacebook", facebook);
+    sistema.actualizarBurbuja("burbujaOtras", otras);
 }

@@ -70,3 +70,32 @@ table, td, th {
 table {
     border-collapse: collapse;
 }
+
+#graficoBurbujas {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.categoria {
+    width: 120px;
+    text-align: center;
+}
+
+.burbuja {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#burbujaInstagram { background-color: red; }
+#burbujaYouTube { background-color: blue; }
+#burbujaX { background-color: green; }
+#burbujaTikTok { background-color: orange; }
+#burbujaFacebook { background-color: purple; }
+#burbujaOtras { background-color: brown; }
