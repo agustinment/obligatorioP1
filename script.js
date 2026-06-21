@@ -437,7 +437,11 @@ function renderizarTablaVentas(){
         let boton = document.createElement("button");
         boton.innerHTML = "❌";
         boton.classList.add("action");
-        boton.addEventListener("click", () => sistema.eliminarVenta(venta.codigo))
+        boton.addEventListener("click", () => { 
+            if(confirm("¿Seguro que querés eliminar la venta?")){ 
+                sistema.eliminarVenta(venta.codigo);
+            }
+        })
         
         tdAccion.appendChild(boton);
         
