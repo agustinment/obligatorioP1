@@ -201,15 +201,11 @@ class Sistema {
         renderizarGrafico();
     }
 
-    actualizarBurbuja(id, valor){
+    actualizarBurbuja(id, valor, totalGeneral){
         let burbuja = document.getElementById(id);
         burbuja.innerHTML = valor;
-        let diametro = 0;
-        if(valor == 0){
-            diametro = 10;
-        } else {
-            diametro = Math.sqrt(valor) * 1.5;
-        }
+        let diametro = 10 + Math.sqrt(valor / totalGeneral) * 80;
+        
         burbuja.style.width = diametro + "px";
         burbuja.style.height = diametro + "px";
     }
@@ -555,6 +551,7 @@ function renderizarGrafico(){
     let tiktok = 0;
     let facebook = 0;
     let otras = 0;
+    let totalGeneral = 0;
     
     for(let venta of sistema.ventas){
         let articulo = sistema.articulos.find(art => art.codigo == venta.articulo);
@@ -580,10 +577,12 @@ function renderizarGrafico(){
         }
     }
 
-    sistema.actualizarBurbuja("burbujaInstagram", instagram);
-    sistema.actualizarBurbuja("burbujaYouTube", youtube);
-    sistema.actualizarBurbuja("burbujaX", x);
-    sistema.actualizarBurbuja("burbujaTikTok", tiktok);
-    sistema.actualizarBurbuja("burbujaFacebook", facebook);
-    sistema.actualizarBurbuja("burbujaOtras", otras);
+    totalGeneral = instagram + youtube + x + tiktok + facebook + otras;
+
+    sistema.actualizarBurbuja("burbujaInstagram", instagram, totalGeneral);
+    sistema.actualizarBurbuja("burbujaYouTube", youtube, totalGeneral);
+    sistema.actualizarBurbuja("burbujaX", x, totalGeneral);
+    sistema.actualizarBurbuja("burbujaTikTok", tiktok, totalGeneral);
+    sistema.actualizarBurbuja("burbujaFacebook", facebook, totalGeneral);
+    sistema.actualizarBurbuja("burbujaOtras", otras, totalGeneral);
 }
