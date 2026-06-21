@@ -204,7 +204,13 @@ class Sistema {
     actualizarBurbuja(id, valor, totalGeneral){
         let burbuja = document.getElementById(id);
         burbuja.innerHTML = valor;
-        let diametro = 10 + Math.sqrt(valor / totalGeneral) * 80;
+
+        let diametro = 0;
+        if(totalGeneral == 0){
+            diametro = 70;
+        } else{
+            diametro = 10 + Math.sqrt(valor / totalGeneral) * 80;
+        }
         
         burbuja.style.width = diametro + "px";
         burbuja.style.height = diametro + "px";
