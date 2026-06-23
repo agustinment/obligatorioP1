@@ -26,6 +26,15 @@ class Sistema {
             alert("Ese mail ya está en uso");
             email.value = "";
         }
+        if(comision.value < 0 || comision.value > 100){
+            alert("Ingrese una comisión válida (entre 0 y 100).")
+            comision.value = "";
+        }
+        if(email.value.toLowerCase() != email.value){
+            alert("Ingrese un email válido (todo minúsculas).")
+            email.value = "";
+        }
+
         if(nombre.value != "" && email.value != "" && comision.value != ""){
             this.agregarInfluencer(nombre.value, email.value, comision.value);
             this.ordenarInfluencers();
