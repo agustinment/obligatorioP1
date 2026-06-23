@@ -65,10 +65,10 @@ class Sistema {
     }
 
 
-    agregarVenta(articulo, influencer, cantidad, medio){
-        let nuevaVenta = new Venta(articulo, influencer, cantidad, medio);
+    agregarVenta(articulo, influencerMail, cantidad, medio){
+        let nuevaVenta = new Venta(articulo, influencerMail, cantidad, medio);
         this.ventas.push(nuevaVenta);
-        let influencerObj = this.influencers.find(inf => inf.nombre == influencer)
+        let influencerObj = this.influencers.find(inf => inf.mail == influencerMail)
         influencerObj.ventas.push(nuevaVenta);
         this.reenumerarVentas();
         actualizarNroVenta();
@@ -97,32 +97,32 @@ class Sistema {
 
     influencerMayorVenta(){
         let maxVenta = Number.MIN_SAFE_INTEGER;
-        let maxInfluencer = "";
+        let maxInfluencerMail = "";
 
         for(let venta of this.ventas){
             let articulo = this.articulos.find(art => art.codigo == venta.articulo);
             let monto = articulo.precio * venta.cantidad;
             if(monto > maxVenta){
                 maxVenta = monto;
-                maxInfluencer = venta.influencer;
+                maxInfluencerMail = venta.influencerMail;
             } 
         }
 
-        return maxInfluencer
+        return maxInfluencerMail
     }
 
     influencerMayorComision(){
         let maxCom = Number.MIN_SAFE_INTEGER;
-        let maxInfluencer = "";
+        let maxInfluencerMail = "";
 
         for(let influencer of this.influencers){
             if(parseInt(influencer.comision) > maxCom){
                 maxCom = influencer.comision;
-                maxInfluencer = influencer;
+                maxInfluencerMail = influencer.mail;
             }
         }
 
-        return maxInfluencer;
+        return maxInfluencerMail;
     }
 
     articuloMasVendido(){
@@ -265,10 +265,10 @@ class Influencer {
         if(this.ventas.length == 0){
             etiquetas += "🧊";
         }
-        if(this.mail == sistema.influencerMayorComision().mail){
+        if(this.mail == sistema.influencerMayorComision()){
             etiquetas += "🔥";
         }
-        if(this.nombre == sistema.influencerMayorVenta()){
+        if(this.mail == sistema.influencerMayorVenta()){
             etiquetas += "🟢";
         }
 
@@ -287,10 +287,10 @@ class Articulo {
 }
 
 class Venta {
-    constructor(articulo, influencer, cantidad, medio){
+    constructor(articulo, influencerMail, cantidad, medio){
         this.codigo = 0;
         this.articulo = articulo;
-        this.influencer = influencer;
+        this.influencerMail = influencerMail;
         this.cantidad = cantidad;
         this.medio = medio;
     }
@@ -378,7 +378,7 @@ function actualizarSelect(id){
         case "influencer":
             for(let i=0; i<sistema.influencers.length; i++){
                 let option = document.createElement("option");
-                option.value = sistema.influencers[i].nombre;
+                option.value = sistema.influencers[i].mail;
                 option.innerHTML = sistema.influencers[i].nombre;
                 select.appendChild(option);
             };
@@ -425,7 +425,8 @@ function renderizarTablaVentas(){
         tdArticulo.innerHTML = venta.articulo;
         
         let tdInfluencer = document.createElement("td");
-        tdInfluencer.innerHTML = venta.influencer;
+        let influencerObj = sistema.influencers.find(inf => inf.mail == venta.influencerMail)
+        tdInfluencer.innerHTML = influencerObj.nombre;
         
         let tdCantidad = document.createElement("td");
         tdCantidad.innerHTML = venta.cantidad;
