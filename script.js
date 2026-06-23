@@ -61,6 +61,11 @@ class Sistema {
             alert("El código debe ser único");
             codigo.value = "";
         }
+        if(precio.value <= 0 && precio.value != ""){
+            alert("El precio debe ser mayor a 0.");
+            precio.value = "";
+        }
+
         if(codigo.value != "" && desc.value != "" && precio.value != ""){
             this.agregarArticulo(codigo.value, desc.value, precio.value);
             this.ordenarArticulos();
