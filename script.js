@@ -118,7 +118,7 @@ class Sistema {
         for(let influencer of this.influencers){
             if(parseInt(influencer.comision) > maxCom){
                 maxCom = influencer.comision;
-                maxInfluencer = influencer.nombre;
+                maxInfluencer = influencer;
             }
         }
 
@@ -265,7 +265,7 @@ class Influencer {
         if(this.ventas.length == 0){
             etiquetas += "🧊";
         }
-        if(this.nombre == sistema.influencerMayorComision()){
+        if(this.mail == sistema.influencerMayorComision().mail){
             etiquetas += "🔥";
         }
         if(this.nombre == sistema.influencerMayorVenta()){
