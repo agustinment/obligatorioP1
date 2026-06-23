@@ -94,6 +94,12 @@ class Sistema {
         let influencer = document.getElementById("influencer");
         let cantidad = document.getElementById("cantidad");
         let medio = document.getElementById("medio");
+
+        if(cantidad.value != "" && cantidad.value <= 0){
+            alert("La cantidad debe ser mayor a 0.");
+            cantidad.value = "";
+        }
+
         if(articulo.value != "" && influencer.value != "" && cantidad.value != "" && medio.value != ""){
             let venta = this.agregarVenta(articulo.value, influencer.value, cantidad.value, medio.value);
             renderizarTablaVentas();
