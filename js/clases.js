@@ -1,3 +1,4 @@
+// Agustín Méndez - 351999
 
 // ================
 // =  GLOBAL VAR  =
@@ -181,7 +182,7 @@ class Sistema {
             let articulo = this.articulos.find(art => art.codigo == venta.articulo)
             let total = articulo.precio * venta.cantidad;
             let comision = total * (influencer.comision / 100);
-            mensaje += "Nro " + venta.codigo + " -> " + venta.cantidad + " -> " + venta.articulo + " -> $" + articulo.precio + "c/u total: $" + total + "-> comision: " + comision + "\n";
+            mensaje += "Nro " + venta.codigo + " -> " + venta.cantidad + " -> " + venta.articulo + " -> $" + articulo.precio + "c/u Total: $" + total + "-> Comisión: $" + comision + "\n";
         }
 
         alert(mensaje);
